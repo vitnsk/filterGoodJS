@@ -17,19 +17,23 @@
                 
                 <li class="number-item">
                     <button class="number-button" @click="good2">2</button>
+                    <hr v-show=vis2 class="number-t">
                 </li>
                 <li class="number-item">
                     <button class="number-button" @click="good3">3</button>
-                    <hr class="number-t">
+                    <hr v-show=vis3 class="number-t">
                 </li>
                 <li class="number-item">
                     <button class="number-button" @click="good4">4</button>
+                    <hr v-show=vis4 class="number-t">
                 </li>
                 <li class="number-item">
                     <button class="number-button" @click="good5">5</button>
+                    <hr v-show=vis5 class="number-t">
                 </li>
                 <li class="number-item">
-                    <button class="number-button" @click="good6">6</button>                   
+                    <button class="number-button" @click="good6">6</button>
+                    <hr v-show=vis6 class="number-t">                   
                 </li>
             </ul>
 
@@ -40,7 +44,7 @@
                 <tr> 
                 <th>
                     <div class="show-difference">
-                    <input type="checkbox" name="a" value="1417">Показать различия
+                    <input type="checkbox"  v-model="hideGoods">Показать различия
                  </div>
                 </th> 
                 
@@ -82,7 +86,7 @@
                     <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.memory}} Гб</td>
                 </tr>
 
-                <tr class="fr-screen" v-if="visible">
+                <tr class="fr-screen" v-if="hideGoods">
                     <td class="products-rows">Частота обновления экрана</td> 
                     <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.fscreen}} Гц</td>
                 </tr>
@@ -125,8 +129,12 @@ export default {
 		
         data() {
           return { 
-            start:0,
-            end:3,
+            vis2:false,
+            vis3:true,
+            vis4:false,
+            vis5:false,
+            vis6:false,
+
             n:3,
               phones: [
                      //{title:'', company:"ПРОИЗВОДИТЕЛЬ", year: "ГОД РЕЛИЗА", dioganal:"ДИАГОНАЛЬ ЭКРАНА (ДЮЙМ)", memory: "" ,fscreen: 60, NFC: 0, ESIM: 1, wcharger: 1,  price: 81990},
@@ -135,28 +143,55 @@ export default {
                       {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890}
               ],
               visible: true,
+              hideGoods: false,
         } 
         
               },
               methods: {
 	    hide: function() {
 		//this.visible = false;
+        
         this.visible = !this.visible;
 	},
     good2(){
        this.n=2;
+       this.vis2=true,
+        this.vis3=false,
+        this.vis4=false,
+        this.vis5=false,
+        this.vis6=false
     },
     good3(){
        this.n=3;
+       this.vis2=false,
+       this.vis3=true,
+       this.vis4=false,
+       this.vis5=false,
+       this.vis6=false
     },
     good4(){
        this.n=4;
+       this.vis2=false,
+       this.vis3=false,
+       this.vis4=true,
+       this.vis5=false,
+       this.vis6=false
     },
     good5(){
        this.n=5;
+       this.vis2=false,
+       this.vis3=false,
+       this.vis4=false,
+       this.vis5=true,
+       this.vis6=false
     },
     good6(){
-       this.n=5;
+       this.n=6;
+       this.vis2=false,
+       this.vis3=false,
+       this.vis4=false,
+       this.vis5=false,
+       this.vis6=true
     },
     
     dateList: function(phones){
