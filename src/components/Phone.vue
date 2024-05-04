@@ -12,23 +12,24 @@
                   <div class="show-products">Отобразить товары:</div>
               </li>
               </ul>
+
          <ul class="show-number">
                 
                 <li class="number-item">
-                    <a data-link="products-quantity-2">2</a>
+                    <button class="number-button" @click="good2">2</button>
                 </li>
                 <li class="number-item">
-                    <a data-link="products-quantity-2">3</a>
+                    <button class="number-button" @click="good3">3</button>
                     <hr class="number-t">
                 </li>
                 <li class="number-item">
-                    <a data-link="products-quantity-2">4</a>
+                    <button class="number-button" @click="good4">4</button>
                 </li>
                 <li class="number-item">
-                    <a data-link="products-quantity-2">5</a>
+                    <button class="number-button" @click="good5">5</button>
                 </li>
                 <li class="number-item">
-                    <a data-link="products-quantity-2">6</a>
+                    <button class="number-button" @click="good6">6</button>                   
                 </li>
             </ul>
 
@@ -42,101 +43,67 @@
                     <input type="checkbox" name="a" value="1417">Показать различия
                  </div>
                 </th> 
-                <th>
+                
+                    <th v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">
                     <div class="show-phone">
                         <div >
-                        <img src="./images/image 16.png" alt="phone" class="phone-image">
+                        <img :src="phone.titleImg" alt="phone" class="phone-image">
                         <a href=""><img src="./images/chevron_small.png" alt="chevron" class="chevron-image"/></a>
                        </div>
-                        <div>Apple iPhone 12</div>
+                        <div>{{phone.title}}</div>
                     </div>
-                </th> 
-                
-
-           
-                <th>
-                    <div class="show-phone">
-                        <div>
-                        <img src="./images/Xiaomi Mi 11 Lite 1.png" alt="phone" class="phone-image">
-                        <a href=""><img src="./images/chevron_small.png" alt="chevron" class="chevron-image"/></a>
-                       </div>
-                        <div>Xiaomi Mi 11 Lite</div>
-                    </div> 
-                </th> 
-                <th>
-                    <div class="show-phone">
-                        <div>
-                        <img src="./images/A72 1.png" alt="phone" class="phone-image">
-                        <a href="" ><img src="./images/chevron_small.png" alt="chevron" class="chevron-image" /></a>                       
-                       </div>                       
-                       <div>Samsung Galaxy A72</div> 
-                    </div>
-                </th> 
-           
+                </th>              
+                     
             </tr>
             
         </thead>
 
         <tbody>
                 <tr> 
-                <td class="products-rows">Производитель</td>  
-                <template v-for="(phone, index) in phones" :key="index">
-                    <td class="info-rows" v-if="index < n">{{phone.company}}</td>    
-                </template>    
-
-                <!-- <td class="info-rows" v-for="(phone, index) in phones.slice(0,n)" :key="index">{{phone.company}}  {{ index}} </td>  -->
+                <td class="products-rows">Производитель</td>                                  
+                       <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.company}}</td>
+                              
                 </tr>               
 
                 <tr> 
-                <td class="products-rows"> год релиза</td> 
-                <td class="info-rows" v-for="phone in phones">{{phone.year}}</td>      
-
+                <td class="products-rows"> год релиза</td>              
+                <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.year}}</td>
                 </tr>
                 <tr>
                 <td class="products-rows"> Диагональ экрана (дюйм)</td> 
-                <!-- <td class="info-rows" v-for="phone in phones">{{phone.diagonal}}</td>   -->
-                
-                <!-- <td class="info-rows" v-for="(phone, index) in dateList" :key="index">{{phone.diagonal}}  </td> -->
-                
-                <td class="info-rows" v-for="(phone, index) in phones.slice(0,n)" :key="index">{{phone.diagonal}}  </td>
+                <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.diagonal}}</td>
                 </tr>
                 <tr>
                     <td class="products-rows">Страна-производитель</td> 
-                    <td class="info-rows" v-for="phone in phones">{{phone.country}}</td>   
-                    
+                    <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.country}}</td>
                 </tr>
                 <tr>
                     <td class="products-rows">Объем памяти</td> 
-                    <td class="info-rows" v-for="phone in phones">{{phone.memory}}</td>   
-                    
+                    <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.memory}} Гб</td>
                 </tr>
 
                 <tr class="fr-screen" v-if="visible">
                     <td class="products-rows">Частота обновления экрана</td> 
-                    <td class="info-rows" v-for="phone in phones">{{phone.fscreen}}</td>   
-                    
+                    <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.fscreen}} Гц</td>
                 </tr>
 
                 <tr>
                     <td class="products-rows">NFC</td> 
-                    <td class="info-rows" v-for="phone in phones">{{phone.NFC}}</td>   
-                    
+                    <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index"><img :src="phone.NFC"></td>
                 </tr>
 
                 <tr v-show="visible">
                     <td class="products-rows"> Поддержка eSIM</td> 
-                    <td class="info-rows" v-for="phone in phones">{{phone.ESIM}}</td>   
-                    
+                    <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index"><img :src="phone.ESIM"></td>
                 </tr>
 
                 <tr>
                     <td class="products-rows">Поддержка беспроводной зарядки</td> 
-                    <td class="info-rows" v-for="phone in phones">{{phone.wcharger}}</td>   
-                    
+                   <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index"><img :src="phone.wcharger"></td>
                 </tr>
                 <tr>
                     <td class="products-rows">Стоимость</td> 
-                    <td class="info-rows" v-for="phone in phones">{{phone.price}}</td>                       
+                    <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.price}}</td>    
                 </tr>
             
             </tbody>
@@ -144,10 +111,9 @@
     
             </div>
             <button class="hid" @click="hide">Скрыть</button>
-            <!-- <button class="hid" @click="updateList">Обновить</button>
-            <button class="hid" @click="updateList2">Обновить_2</button> -->
-            <button class="hid" @click="page1">Лист-1</button>
-            <button class="hid" @click="page2">Лист-1</button>
+           
+            <!-- <button class="hid" @click="page1">Лист-1</button>
+            <button class="hid" @click="page2">Лист-1</button> -->
             <!-- <input class="hid" v-model="start" type="number" />
             <input class="hid" v-model="end" type="number" /> -->
     </section>
@@ -163,10 +129,10 @@ export default {
             end:3,
             n:3,
               phones: [
-                     //{title:'', company:"ПРОИЗВОДИТЕЛЬ", year: "ГОД РЕЛИЗА", dioganal:"ДИАГОНАЛЬ ЭКРАНА (ДЮЙМ)", memory: "" ,fscreen: '60 Гц', NFC: 0, ESIM: 1, wcharger: 1,  price: 81990},
-                      {title:'Apple iPhone 12', company:'Apple', year: 2020, diagonal: 6.1, country: "Китай", memory: '128 Гб' ,fscreen: '60 Гц', NFC: 0, ESIM: 1, wcharger: 1,  price: 81990},
-                      {title:'Xiaomi Mi 11 Lite', company:'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: '128 Гб' ,fscreen: '90 Гц', NFC: 1, ESIM: 1, wcharger: 0,  price: 27490}, 
-                      {title:'Samsung Galaxy A72', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: '128 Гб' ,fscreen: '90 Гц', NFC: 1, ESIM: 0, wcharger: 1,  price: 32890}
+                     //{title:'', company:"ПРОИЗВОДИТЕЛЬ", year: "ГОД РЕЛИЗА", dioganal:"ДИАГОНАЛЬ ЭКРАНА (ДЮЙМ)", memory: "" ,fscreen: 60, NFC: 0, ESIM: 1, wcharger: 1,  price: 81990},
+                      {title:'Apple iPhone 12', titleImg:'./src/components/images/image 16.png',company:'Apple', year: 2020, diagonal: 6.1, country: "Китай", memory: 128 ,fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png',  price: 81990},
+                      {title:'Xiaomi Mi 11 Lite', titleImg:'./src/components/images/Xiaomi Mi 11 Lite 1.png', company:'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png',  price: 27490}, 
+                      {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890}
               ],
               visible: true,
         } 
@@ -177,19 +143,30 @@ export default {
 		//this.visible = false;
         this.visible = !this.visible;
 	},
-    page1: function(){
-       this.n=1;
+    good2(){
+       this.n=2;
     },
-
-    page2: function(){
+    good3(){
        this.n=3;
     },
+    good4(){
+       this.n=4;
+    },
+    good5(){
+       this.n=5;
+    },
+    good6(){
+       this.n=5;
+    },
     
-    dateList: function(){
-        return this.phones = this.phones.slice(0,n)
+    dateList: function(phones){
+         return this.phones.slice(0,1);
    
 },
 computed:{
+    dateList: function(){
+        this.phones=  this.phones.slice(0,1);
+    },
     visibleList(){
         return this.phones.slice(this.start,this.end);
     }
@@ -197,6 +174,7 @@ computed:{
         }
     }
 </script>
+
 <style>
 .container-title{
     
@@ -249,6 +227,19 @@ computed:{
     font-weight: 400;
     margin-left: 4px;
     margin-top: 61px;
+}
+
+.number-button{
+border: none;
+ background: none; 
+ color: #0D5ADC;
+ font-size: 18px;
+ padding: 0;
+ 
+}
+
+.number-button :active { 
+    text-decoration: underline; 
 }
 
 .number-t{
