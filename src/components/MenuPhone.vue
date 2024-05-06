@@ -33,7 +33,6 @@
     margin-top: 42px;
     margin-left: 166px;
     margin-right: 100px;
-    /*margin-bottom: 41px;*/
     color:#0D5ADC;
     text-decoration: none;
  
@@ -43,8 +42,6 @@
     font-size: 12px;
     margin-top: 44px;
     margin-left: 614px;
-   
-   /* color: #CDCFD2;*/
     color:#000;
 }
 
