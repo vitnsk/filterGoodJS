@@ -60,7 +60,6 @@
                         </th>
 
                     </tr>
-
                 </thead>
 
                 <tbody>
@@ -68,28 +67,28 @@
                         <td class="products-rows">Производитель</td>
                         <td class="info-rows" v-for="(phone, index) in dateListCompany=phones.slice(0, n)" :key="index">
                             {{ phone.company }}</td>
-
                     </tr>
 
                     <tr v-if="!hideYear">
                         <td class="products-rows"> год релиза</td>
                         <td class="info-rows" v-for="(phone, index) in dateListYear=phones.slice(0, n)" :key="index">
                             {{ phone.year }}</td>
-
                     </tr>
+
                     <tr v-if="!hideDiagonal">
                         <td class="products-rows"> Диагональ экрана (дюйм)</td>
                         <td class="info-rows" v-for="(phone, index) in dateListDiagonal=phones.slice(0, n)"
                             :key="index">
                             {{ phn=phone.diagonal }}</td>
-
                         <td class="info-rows" v-for="(phone) in dateScreen">{{ phone }}</td>
                     </tr>
+
                     <tr v-if="!hideCountry">
                         <td class="products-rows">Страна-производитель</td>
                         <td class="info-rows" v-for="(phone, index) in dateListCountry=phones.slice(0, n)" :key="index">
                             {{ phone.country }}</td>
                     </tr>
+
                     <tr v-if="!hideMemory">
                         <td class="products-rows">Объем памяти</td>
                         <td class="info-rows" v-for="(phone, index) in dateListMemory=phones.slice(0, n)" :key="index">
@@ -120,17 +119,16 @@
                             <img :src="phone.wcharger">
                         </td>
                     </tr>
+
                     <tr v-if="!hidePrice">
                         <td class="products-rows">Стоимость</td>
                         <td class="info-rows" v-for="(phone, index) in dateListPrice=phones.slice(0, n)" :key="index">
                             {{ phone.price }} ₽</td>
-                    </tr>
+                    </tr>     
 
                 </tbody>
             </table>
-
         </div>
-
     </section>
 
 </template>
@@ -140,13 +138,7 @@ export default {
 
     data() {
         return {
-            vis2: false,
-            vis3: true,
-            vis4: false,
-            vis5: false,
-            vis6: false,
-
-            n: 3,
+            
             phones: [
                 { title: 'Apple iPhone 12', titleImg: './src/components/images/image 16.png', company: 'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128, fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 81990 },
                 { title: 'Xiaomi Mi 11 Lite', titleImg: './src/components/images/Xiaomi Mi 11 Lite 1.png', company: 'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png', price: 27490 },
@@ -157,7 +149,12 @@ export default {
 
             ],
 
-
+            vis2: false,
+            vis3: true,
+            vis4: false,
+            vis5: false,
+            vis6: false,
+            n: 3,
             hideGoods: false,
             hideCompany: false,
             hideYear: false,
@@ -169,57 +166,51 @@ export default {
             hideESIM: false,
             hideWcharge: false,
             hidePrice: false,
-
         }
-
     },
     methods: {
-
         good2() {
             this.n = 2;
             this.vis2 = true,
-                this.vis3 = false,
-                this.vis4 = false,
-                this.vis5 = false,
-                this.vis6 = false
+            this.vis3 = false,
+            this.vis4 = false,
+            this.vis5 = false,
+            this.vis6 = false
         },
         good3() {
             this.n = 3;
             this.vis2 = false,
-                this.vis3 = true,
-                this.vis4 = false,
-                this.vis5 = false,
-                this.vis6 = false
+            this.vis3 = true,
+            this.vis4 = false,
+            this.vis5 = false,
+            this.vis6 = false
         },
         good4() {
             this.n = 4;
             this.vis2 = false,
-                this.vis3 = false,
-                this.vis4 = true,
-                this.vis5 = false,
-                this.vis6 = false
+            this.vis3 = false,
+            this.vis4 = true,
+            this.vis5 = false,
+            this.vis6 = false
         },
         good5() {
             this.n = 5;
             this.vis2 = false,
-                this.vis3 = false,
-                this.vis4 = false,
-                this.vis5 = true,
-                this.vis6 = false
+            this.vis3 = false,
+            this.vis4 = false,
+            this.vis5 = true,
+            this.vis6 = false
         },
         good6() {
             this.n = 6;
             this.vis2 = false,
-                this.vis3 = false,
-                this.vis4 = false,
-                this.vis5 = false,
-                this.vis6 = true
+            this.vis3 = false,
+            this.vis4 = false,
+            this.vis5 = false,
+            this.vis6 = true
         },
-
-
     },
     computed: {
-
         hide() {
             const arrCompany = [...new Set(this.dateListCompany.map(a => a.company))]
             const arrYear = [...new Set(this.dateListYear.map(a => a.year))]
