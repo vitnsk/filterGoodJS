@@ -44,7 +44,7 @@
                 <tr> 
                 <th>
                     <div class="show-difference">
-                    <input type="checkbox"  v-model="hideGoods">Показать различия
+                    <input type="checkbox"  v-model="hideGoods" >Показать различия
                  </div>
                 </th> 
                 
@@ -63,16 +63,38 @@
         </thead>
 
         <tbody>
-                <tr> 
+                <tr v-if="!hideGoods"> 
                 <td class="products-rows">Производитель</td>                                  
-                       <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.company}}</td>
-                              
+                       <!-- <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.company}}</td> -->
+                       <template v-for="(phone, index) in phones" :key="index">
+                        <template v-if="index < n" >
+                       
+                        <td class="info-rows" >{{phone.company}}</td>   
+                        
+
+                    </template>
+                    </template>           
                 </tr>               
 
                 <tr> 
                 <td class="products-rows"> год релиза</td>              
-                <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.year}}</td>
-                </tr>
+                <!-- <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.year}}</td> -->
+                <template v-for="(phone, index) in phones" :key="index">
+                    <template v-if="index < n" >
+                   
+                    <td class="info-rows" v-bind:selectedGoods="phone.year" v-bind:i="index">{{phone.year}}</td>   
+                    <!-- <template v-bind:ph="phone.year" v-if="(phone.year)!= ph" >
+                        {{phone.year}} - {{index+1}}-{{ ph }}
+
+                    </template> -->
+                    <template v-for="(phn, index) in selectedGood" :key="index">
+                        {{ phn }}
+                    </template>  
+                 
+                </template>
+                </template>         
+                
+            </tr>
                 <tr>
                 <td class="products-rows"> Диагональ экрана (дюйм)</td> 
                 <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.diagonal}}</td>
@@ -81,12 +103,12 @@
                     <td class="products-rows">Страна-производитель</td> 
                     <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.country}}</td>
                 </tr>
-                <tr>
+                <tr v-if="!hideGoods">
                     <td class="products-rows">Объем памяти</td> 
                     <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.memory}} Гб</td>
                 </tr>
 
-                <tr class="fr-screen" v-if="hideGoods">
+                <tr class="fr-screen" v-if="!hideGoods">
                     <td class="products-rows">Частота обновления экрана</td> 
                     <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.fscreen}} Гц</td>
                 </tr>
@@ -107,15 +129,15 @@
                 </tr>
                 <tr>
                     <td class="products-rows">Стоимость</td> 
-                    <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.price}}</td>    
+                    <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.price}} ₽</td>    
                 </tr>
             
             </tbody>
                 </table> 
     
             </div>
-            <button class="hid" @click="hide">Скрыть</button>
-           
+            <!-- <button class="hid" @click="hide">Скрыть</button>
+            -->
             <!-- <button class="hid" @click="page1">Лист-1</button>
             <button class="hid" @click="page2">Лист-1</button> -->
             <!-- <input class="hid" v-model="start" type="number" />
@@ -138,20 +160,24 @@ export default {
             n:3,
               phones: [
                      //{title:'', company:"ПРОИЗВОДИТЕЛЬ", year: "ГОД РЕЛИЗА", dioganal:"ДИАГОНАЛЬ ЭКРАНА (ДЮЙМ)", memory: "" ,fscreen: 60, NFC: 0, ESIM: 1, wcharger: 1,  price: 81990},
-                      {title:'Apple iPhone 12', titleImg:'./src/components/images/image 16.png',company:'Apple', year: 2020, diagonal: 6.1, country: "Китай", memory: 128 ,fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png',  price: 81990},
-                      {title:'Xiaomi Mi 11 Lite', titleImg:'./src/components/images/Xiaomi Mi 11 Lite 1.png', company:'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png',  price: 27490}, 
+                      {title:'Apple iPhone 12', titleImg:'./src/components/images/image 16.png',company:'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128 ,fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png',  price: 81990},
+                      {title:'Xiaomi Mi 11 Lite', titleImg:'./src/components/images/Xiaomi Mi 11 Lite 1.png', company:'Xiaomi', year: 2022, diagonal: 6.55, country: "Китай", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png',  price: 27490}, 
+                      {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890},
+                      {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890},
+                      {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890},
                       {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890}
+             
               ],
+              selectedGoods:[],
               visible: true,
               hideGoods: false,
+             
         } 
         
               },
-              methods: {
-	    hide: function() {
-		//this.visible = false;
-        
-        this.visible = !this.visible;
+methods: {
+	    hiden() {
+	    this.visible = !this.visible;
 	},
     good2(){
        this.n=2;
@@ -194,20 +220,25 @@ export default {
        this.vis6=true
     },
     
-    dateList: function(phones){
-         return this.phones.slice(0,1);
-   
+    selectList(){
+      this.selectedGoods.push (this.ph);
+        // return this.phones.slice(this.start,this.end);
+    }
+
+
+
 },
 computed:{
     dateList: function(){
         this.phones=  this.phones.slice(0,1);
     },
-    visibleList(){
-        return this.phones.slice(this.start,this.end);
-    }
+    //selectList(){
+       // return selectedGoods[i]=ph;
+        // return this.phones.slice(this.start,this.end);
+    //}
             }
         }
-    }
+    
 </script>
 
 <style>
