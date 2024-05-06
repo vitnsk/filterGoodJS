@@ -44,7 +44,7 @@
                 <tr> 
                 <th>
                     <div class="show-difference">
-                    <input type="checkbox"  v-model="hideGoods" >Показать различия
+                    <input type="checkbox"  @click="hide" >Показать различия
                  </div>
                 </th> 
                 
@@ -63,27 +63,20 @@
         </thead>
 
         <tbody>
-                <tr > 
-                <td class="products-rows">Производитель</td>                                  
-                       <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.company}}</td>
-                       
+                <tr v-if="!hideCompany"> 
+                  <td class="products-rows">Производитель</td>                                  
+                  <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.company}}</td>
+                   
                 </tr>               
 
-                <tr> 
+                <tr v-if="!hideYear"> 
                 <td class="products-rows"> год релиза</td>              
-                <!-- <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phone.year}}</td> -->
-                <template v-for="(phone, index) in phones" :key="index" :value="dateYear">
-                    <template v-if="index < n" >
-                   
-                    <td class="info-rows" >{{phone.year}}- {{index}}</td>     
-                    
-                </template>
-                </template>         
-                <td class="info-rows" v-for="(phone) in dateYear" >{{phone}}</td>
+                <td class="info-rows" v-for="(phone, index) in dateListYear=phones.slice(0,n)" :key="index">{{phone.year}}</td>
+                 <!-- <td class="info-rows" v-for="(phone) in dateYear" >{{phone}}</td> -->
             </tr>
-                <tr>
+                <tr  v-if="!hideDiagonal" >
                 <td class="products-rows"> Диагональ экрана (дюйм)</td> 
-                <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index" :value="dateScreen">{{phone.diagonal}}</td>
+                <td class="info-rows" v-for="(phone, index) in dateList=phones.slice(0,n)" :key="index">{{phn=phone.diagonal}}</td>
                 
                 <td class="info-rows" v-for="(phone) in dateScreen" >{{phone}}</td>
             </tr>
@@ -124,7 +117,7 @@
                 </table> 
                 <button class="number-button" @click="good5">5</button>
             </div>
-            <button class="hid" @click="selectList">Массив</button>
+            <button class="hid" @click="hide">Массив</button>
     </section>
 
 </template>
@@ -143,25 +136,27 @@ export default {
             n:3,
               phones: [                    
                       {title:'Apple iPhone 12', titleImg:'./src/components/images/image 16.png',company:'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128 ,fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png',  price: 81990},
-                      {title:'Xiaomi Mi 11 Lite', titleImg:'./src/components/images/Xiaomi Mi 11 Lite 1.png', company:'Xiaomi', year: 2022, diagonal: 6.55, country: "Китай", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png',  price: 27490}, 
-                      {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890},
-                      {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890},
+                      {title:'Xiaomi Mi 11 Lite', titleImg:'./src/components/images/Xiaomi Mi 11 Lite 1.png', company:'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png',  price: 27490}, 
+                      {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.1, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890},
+                      {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2022, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890},
                       {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890},
                       {title:'Samsung Galaxy A72', titleImg:'./src/components/images/A72 1.png', company:'Samsung', year: 2020, diagonal: 6.9, country: "Вьетнам", memory: 128 ,fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png',  price: 32890}
              
               ],
               selectedGoods:[],
           
-              visible: true,
+        
               hideGoods: false,
+              hideCompany: false,
+              hideYear:false,
+
+             
              
         } 
         
               },
 methods: {
-	    hiden() {
-	    this.visible = !this.visible;
-	},
+	    
     good2(){
        this.n=2;
        this.vis2=true,
@@ -206,17 +201,37 @@ methods: {
     
 },
 computed:{
-    dateYear(){
-    return [...new Set(this.phones.map(a=>a.year))];
-    },
+    
+    hide() {
+        const arrCompany= [...new Set(this.dateList.map(a=>a.company))]  
+        const arrYear= [...new Set(this.dateListYear.map(a=>a.year))]  
+        const arrDiagonal= [...new Set(this.dateList.map(a=>a.diagonal))] 
+            
+    if(arrCompany.length==1) 
+	this.hideCompany =  !this.hideCompany ;
+    else       
+    this.hideCompany =  false;
+        
+    if(arrYear.length==1) 
+	this.hideYear =  !this.hideYear ;
+     else           
+     this.hideYear =  false;
 
-    dateYearf(){
-    return[phones.filter((item, index) => arr.indexOf(item) === index)];
-    },
-    dateScreen() {
-    return [...new Set(this.dateList.map(a=>a.diagonal))];
+    if(arrDiagonal.length==1) 
+	this.hideDiagonal =  !this.hideDiagonal ;
+    else       
+    this.hideDiagonal =  false;
 
-   },
+
+
+	},
+
+
+
+
+
+
+
   },
 }
 
