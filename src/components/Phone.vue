@@ -65,8 +65,7 @@
                         </th>
                     </tr>
                 </thead>
-<!-- <User :name="user.name" :surn="user.surn"	/> -->
-<!-- <User v-for="user in users"	:name="user.name":key="user.id"/> -->
+
                 <tbody>
                     <tr v-if="!hideCompany">
                         <td class="products-rows">Производитель</td>
@@ -133,9 +132,7 @@
 
                 </tbody>
             </table>
-            
-		
-   <!-- <h1> <User :name="name" :surn="surn" />  </h1> -->
+             
 
         </div>
 
@@ -144,36 +141,18 @@
 </template>
 <script>
 import ElsePhone from './ElsePhone.vue'
-import User from './User.vue'
+
 
 export default {
     components: {
 			ElsePhone,
-            User
+          
 		},
     data() {
         return {
-        //     name: 'john',
-		// surn: 'smit',
+        
 
-        users: [
-			{
-				id: 1,
-				name: 'name1',
-				surn: 'surn1'
-			},
-			{
-				id: 2,
-				name: 'name2',
-				surn: 'surn2'
-			},
-			{
-				id: 3,
-				name: 'name3',
-				surn: 'surn3'
-			},
-		],
-
+       
             phones: [
                 { title: 'Apple iPhone 12', titleImg: './src/components/images/image 16.png', company: 'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128, fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 81990 },
                 { title: 'Xiaomi Mi 11 Lite', titleImg: './src/components/images/Xiaomi Mi 11 Lite 1.png', company: 'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png', price: 27490 },
@@ -184,9 +163,6 @@ export default {
 
             ],
            
-             
-    
-
             vis2: false,
             vis3: true,
             vis4: false,
@@ -362,23 +338,7 @@ phone-thead{
 }
 
 
-/*.show-phone-head{
-    display:inline-block;   
-    position: absolute;
 
-}*/
-
-/*.chevron-button{
-    border: none;
-    background: none;
-    padding: 0;
-}
-*/
-
-/*.elsePhone
-{
-    position: absolute;
-}*/
 .show-item {
     color: #0D5ADC;
     font-weight: 400;
