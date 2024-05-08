@@ -3,11 +3,11 @@
     
     <button class="chevron-button" @click="elsePhone">  <img src="./images/chevron_small.png" alt="chevron"
         class="chevron-image" /> </button>
-       <div v-if="showMenu">
+       <div v-show="showMenu">
         <ul >
-            <li>Пирожное</li>
-            <li>Пончик</li>
-            <li>Мёд</li>
+            <li v-for="(phone, index) in dateList=phones" :key="index">
+                {{ phone.title }}</li>
+            
           </ul>
         </div>
 
@@ -18,6 +18,7 @@ export default {
     data() {
         return {
            showMenu: false,
+           
         }
     },
     methods:{
