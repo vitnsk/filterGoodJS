@@ -1,3 +1,7 @@
+
+
+
+
 <template>
 
     <section class="products" id="products">
@@ -38,6 +42,7 @@
                 </ul>
 
             </div>
+         
             <table class="phone-table">
 
                 <thead>
@@ -51,9 +56,9 @@
                         <th v-for="(phone, index) in dateList=phones.slice(0, n)" :key="index">
                             <div class="show-phone">
                                 <div>
-                                    <img :src="phone.titleImg" alt="phone" class="phone-image">
-                                    <a href=""><img src="./images/chevron_small.png" alt="chevron"
-                                            class="chevron-image" /></a>
+                                      <img :src="phone.titleImg" alt="phone" class="phone-image">
+                                      <ElsePhone/>                                    
+                                           
                                 </div>
                                 <div>{{ phone.title }}</div>
                             </div>
@@ -128,14 +133,19 @@
 
                 </tbody>
             </table>
+            
         </div>
+
     </section>
 
 </template>
 <script>
-
+import ElsePhone from './ElsePhone.vue'
 export default {
-
+    components: {
+			ElsePhone,
+      
+		},
     data() {
         return {
             
@@ -148,7 +158,7 @@ export default {
                 { title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2020, diagonal: 6.9, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 }
 
             ],
-
+            
             vis2: false,
             vis3: true,
             vis4: false,
@@ -166,6 +176,7 @@ export default {
             hideESIM: false,
             hideWcharge: false,
             hidePrice: false,
+
         }
     },
     methods: {
@@ -311,6 +322,12 @@ export default {
     color: #828286;
 
 }
+/*.chevron-button{
+    border: none;
+    background: none;
+    padding: 0;
+}
+*/
 
 .show-item {
     color: #0D5ADC;
@@ -350,7 +367,6 @@ export default {
     margin-left: 165px;
     margin-top: 0;
     border: none;
-
     font-family: Roboto;
     width: 1110px;
 }
@@ -363,7 +379,6 @@ export default {
 }
 
 .phone-table tbody td {
-
     border-bottom: 1px solid #CDCFD2;
     font-size: 18px;
     height: 89px;
