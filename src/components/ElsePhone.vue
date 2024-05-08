@@ -4,18 +4,34 @@
     <button class="chevron-button" @click="elsePhone">  <img src="./images/chevron_small.png" alt="chevron"
         class="chevron-image" /> </button>
        <div v-show="showMenu">
-        <ul >
-            <li v-for="(phone, index) in dateList=phones" :key="index">
-                {{ phone.title }}</li>
-            
-          </ul>
-        </div>
+        <span class="conteiner-else">
+                <button class="button-else" v-for="(phone, index) in phones" :key="index"  :title="phone.title">
+               <span class="img-button-else">
+               <img class="img-button" :src="phone.titleImg">
+              <span class="list-img-button"> {{ phone.title }}</span>
+               </span>
 
+                </button>
+            </span>
+        </div>
+      
+                    
 </template>
 <script>
 export default {
-    
+   
+
+
+  props: {
+    phones:{
+            type: Array,
+            default: function(){
+                return []
+            }
+        }
+    },
     data() {
+
         return {
            showMenu: false,
            
@@ -38,6 +54,40 @@ export default {
     border: none;
     background: none;
     padding: 0;
+ 
 }
 
+/*.conteiner-else
+{
+    display: block;
+}*/
+
+.button-else{
+    border: none;
+    background: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.img-button-else{
+ 
+    align-items: center;
+}
+
+.img-button{
+    display: block;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    transform: scale(0.5); 
+}
+
+.list-img-button{
+    display: block;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 </style>
