@@ -58,14 +58,15 @@
                                 <div>
                                       <img :src="phone.titleImg" alt="phone" class="phone-image">
                                                                       
-                                      <ElsePhone :phones="phones" class="elsePhone"/>   
-                                </div>
+                                      <ElsePhone :phones="phones" class="elsePhone" @showEF="funcEF"/>   
+                                </div> 
                                 <div>{{ phone.title }}</div>
                             </div>
                         </th>
                     </tr>
                 </thead>
-
+                <User @show="func" />
+               
                 <tbody>
                     <tr v-if="!hideCompany">
                         <td class="products-rows">Производитель</td>
@@ -141,25 +142,27 @@
 </template>
 <script>
 import ElsePhone from './ElsePhone.vue'
-
+import User from './User.vue'
 
 export default {
     components: {
 			ElsePhone,
-          
+            User,
 		},
+    emits: ['show'],
+    emits: ['showEF'],
     data() {
         return {
         
 
        
             phones: [
-                { title: 'Apple iPhone 12', titleImg: './src/components/images/image 16.png', company: 'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128, fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 81990 },
-                { title: 'Xiaomi Mi 11 Lite', titleImg: './src/components/images/Xiaomi Mi 11 Lite 1.png', company: 'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png', price: 27490 },
-                { title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2021, diagonal: 6.1, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
-                { title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2022, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
-                { title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
-                { title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2020, diagonal: 6.9, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 }
+                { id: 0, title: 'Apple iPhone 12', titleImg: './src/components/images/image 16.png', company: 'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128, fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 81990 },
+                { id: 1, title: 'Xiaomi Mi 11 Lite', titleImg: './src/components/images/Xiaomi Mi 11 Lite 1.png', company: 'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png', price: 27490 },
+                { id: 2, title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2021, diagonal: 6.1, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
+                { id: 3, title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2022, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
+                { id: 4, title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
+                { id: 5, title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2020, diagonal: 6.9, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 }
 
             ],
            
@@ -224,6 +227,19 @@ export default {
             this.vis5 = false,
             this.vis6 = true
         },
+
+        // func() {
+		// alert('xxx');
+	    // },
+
+        func(arg1, arg2) {
+		console.log(arg1, arg2);
+        alert(arg2);
+	},
+
+       funcEF(idf) {
+		alert(idf);
+	    },
     },
     computed: {
         hide() {
