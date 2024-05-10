@@ -14,7 +14,7 @@
                 </button>
             </span>
         </div>
-        <!-- <button @click="handleEF">btnEF</button> -->
+        
                     
 </template>
 <script>
@@ -34,8 +34,7 @@ export default {
 
         return {
            showMenu: false,
-           //nf:555,
-           //index: 0,
+          
         }
     },
     methods:{
