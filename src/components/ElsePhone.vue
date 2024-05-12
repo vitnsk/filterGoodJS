@@ -15,14 +15,10 @@
             </span>
         </div>
         
-       <!-- <span> phoneID -{{this.phoneID}} </span> -->
+      
 </template>
 <script>
-export default {
-   
-
-
-  
+export default {  
   props: {
             phones:{
             type: Array,
@@ -30,17 +26,8 @@ export default {
                 return []
             }
              },
-           
-        //    indexID:{
-        //     type: Number,
-        //     default: function(){
-        //         return []
-        //     },
-
-            phoneID: Number,            
-    
-
-    },
+            phoneID: Number, 
+            },
     data() {
 
         return {
@@ -67,14 +54,14 @@ export default {
 .chevron-button{
     border: none;
     background: none;
-    padding: 0;
- 
+    padding: 0; 
 }
 
-/*.conteiner-else
+.conteiner-else
 {
     display: block;
-}*/
+    position: absolute;
+}
 
 .button-else{
     border: none;
@@ -85,8 +72,7 @@ export default {
     
 }
 
-.img-button-else{
- 
+.img-button-else{ 
     align-items: center;
 }
 

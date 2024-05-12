@@ -55,17 +55,19 @@
 
                         <th class="show-phone-head" v-for="(phone, indexID) in dateList=phones.slice(0, n)" :key="indexID"  >
                             <div class="show-phone">
-                                <div>
+                                <span>
                                       <img :src="phone.titleImg" alt="phone" class="phone-image">
-                                                                      
-                                      <ElsePhone :phones="phones" class="elsePhone" @showEF="funcEF" :phoneID="indexID" />   
-                                </div> 
-                                <div>{{ phone.title }} -{{indexID}}</div> 
+                                      <div>{{ phone.title }} -{{indexID}}</div>                 
+                                        
+                                </span> 
+                                <span class="else-phone">
+                                <ElsePhone :phones="phones" class="elsePhone" @showEF="funcEF" :phoneID="indexID" /> 
+                                </span>
                             </div>
                         </th>
                     </tr>
                 </thead>
-                <User @show="func" name="john" surn="smit"  />
+                
                
                 <tbody>
                     <tr v-if="!hideCompany">
@@ -133,9 +135,8 @@
 
                 </tbody>
             </table>
-            <!-- <User name="john" surn="smit" /> -->
-          uuuu-  {{ phones[0].title }}
-          <button @click="funcET"> yyyyy</button>
+            
+          
         </div>
 
     </section>
@@ -143,21 +144,18 @@
 </template>
 <script>
 import ElsePhone from './ElsePhone.vue'
-import User from './User.vue'
+
 
 export default {
     components: {
 			ElsePhone,
-            User,
+            
 		},
   
     emits: ['showEF'],
-    emits: ['show'],
+    
     data() {
-        return {
-        
-
-       
+        return {       
             phones: [
                 {  title: 'Apple iPhone 12', titleImg: './src/components/images/image 16.png', company: 'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128, fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 81990 },
                 {  title: 'Xiaomi Mi 11 Lite', titleImg: './src/components/images/Xiaomi Mi 11 Lite 1.png', company: 'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png', price: 27490 },
@@ -230,19 +228,6 @@ export default {
             this.vis6 = true
         },
         
-        func(arg1, arg2) {
-		alert(arg2);
-	},
-
-    funcET(phones)
-    {
-       alert('pppppp')
-
-       m= String (phones[0].title);
-        alert(m) ;
-    },
-
-
        funcEF(idPhElse, idPh, phones) {
 		//alert(idPhElse);
         //alert(idPh);
@@ -250,7 +235,7 @@ export default {
          this.phones[idPh]=this.phones[idPhElse];
         this.phones[idPhElse]=varEl;
         alert( this.phones[0].title);
-         //alert(idPh);
+     
          return phones;
 	    },
     },
@@ -355,19 +340,23 @@ export default {
     color: #828286;
 
 }
-phone-thead{
+.phone-thead{
     position: relative;
    
 
 }
 .show-phone{
-    display:inline-block; 
-    
-    
+    display:flex;  
+    margin-left: 30%;
+   
 }
 
 
-
+.else-phone{
+  
+    padding: 0;
+    margin-top: 90px;
+}
 .show-item {
     color: #0D5ADC;
     font-weight: 400;
