@@ -5,30 +5,41 @@
         class="chevron-image" /> </button>
        <div v-show="showMenu">
         <span class="conteiner-else">
-                <button class="button-else" v-for="(phone, index) in phones" :key="index"  :title="phone.title" @click="handleEF(index)">
+                <button class="button-else" v-for="(phone, index) in phones" :key="index"  :title="phone.title" @click="handleEF(index, phoneID)">
                <span class="img-button-else">
                <img class="img-button" :src="phone.titleImg">
-              <span class="list-img-button"> {{ phone.title }} - {{ index}}</span>
+              <span class="list-img-button"> {{ phone.title }} -{{index}}- {{phoneID}}</span>
                </span>
 
                 </button>
             </span>
         </div>
         
-                    
+       <!-- <span> phoneID -{{this.phoneID}} </span> -->
 </template>
 <script>
 export default {
    
 
 
+  
   props: {
-    phones:{
+            phones:{
             type: Array,
             default: function(){
                 return []
             }
-        }
+             },
+           
+        //    indexID:{
+        //     type: Number,
+        //     default: function(){
+        //         return []
+        //     },
+
+            phoneID: Number,            
+    
+
     },
     data() {
 
@@ -42,9 +53,10 @@ export default {
              this.showMenu=!this.showMenu
           /// this.showMenu=true;
         },
-        handleEF(index) {
+        handleEF(index, phoneID) {
         this.nf=index;
-		   this.$emit('showEF', this.nf);
+        this.mf=phoneID;
+		   this.$emit('showEF', this.nf, this.mf);
 	    }
     }
 }
