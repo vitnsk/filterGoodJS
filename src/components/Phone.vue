@@ -61,7 +61,7 @@
                                         
                                 </span> 
                                 <span class="else-phone">
-                                <ElsePhone :phones="phones" class="elsePhone" @showEF="funcEF" :phoneID="indexID" /> 
+                                <ElsePhone :phones="phones" class="elsePhone" @showEF="funcEF" :phoneID="indexID" :stn="n"/> 
                                 </span>
                             </div>
                         </th>
@@ -227,7 +227,7 @@ export default {
             this.vis5 = false,
             this.vis6 = true
         },
-        
+
        funcEF(idPhElse, idPh, phones) {
 		//alert(idPhElse);
         //alert(idPh);

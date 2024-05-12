@@ -5,8 +5,9 @@
         class="chevron-image" /> </button>
        <div v-show="showMenu">
         <span class="conteiner-else">
-                <button class="button-else" v-for="(phone, index) in phones" :key="index"  :title="phone.title" @click="handleEF(index, phoneID)">
-               <span class="img-button-else">
+                <button class="button-else" v-for="(phone, index) in phones.slice(stn, phones.length)" :key="index"  :title="phone.title" @click="handleEF(index, phoneID)">
+                    <!-- <button class="button-else" v-for="(phone, index) in phones" :key="index"  :title="phone.title" @click="handleEF(index, phoneID)"> -->
+                    <span class="img-button-else">
                <img class="img-button" :src="phone.titleImg">
               <span class="list-img-button"> {{ phone.title }} -{{index}}- {{phoneID}}</span>
                </span>
@@ -27,6 +28,7 @@ export default {
             }
              },
             phoneID: Number, 
+            stn: Number,
             },
     data() {
 
