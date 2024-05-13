@@ -2,30 +2,31 @@
 
     
     <button class="chevron-button" @click="elsePhone">  <img src="./images/chevron_small.png" alt="chevron"
-        class="chevron-image" /> </button>
+        class="chevron-image" /> 
+    </button>
+
        <div v-show="showMenu">
-        <span class="conteiner-else">
-                <!-- <button class="button-else" v-for="(phone, index) in phones.slice(stn, phones.length)" :key="index"  :title="phone.title" @click="handleEF(index, phoneID)"> -->
-                    <!-- <button class="button-else" v-for="(phone, index) in phones" :key="index"  :title="phone.title" @click="handleEF(index, phoneID)">
-                    <span class="img-button-else">
-               <img class="img-button" :src="phone.titleImg">
-              <span class="list-img-button"> {{ phone.title }} -{{index}}- {{phoneID}}</span>
-               </span>
-
-                </button> -->
-
+           <div class="conteiner-else">               
+                <div><input class="search-input" type="text" v-model="title" placeholder="Поиск:"/></div>
                 <template v-for="(phone, index) in phones" :key="index">
-                    <template v-if="index >= stn" >
-                    <button class="button-else"  @click="handleEF(index, phoneID)">
+                     <span v-if="index >= stn" > 
+                        <div class="phone-else-list">
+                     <button class="button-else"  @click="handleEF(index, phoneID)">
                     <span class="img-button-else">
-                        <img class="img-button" :src="phone.titleImg">
-                       <span class="list-img-button"> {{ phone.title }} -{{index}}- {{phoneID}}</span>
+                        <img src="./images/vector-str.png" alt="vector-str" class="vector-str-image">
+                        
                         </span>
                     </button>
+                    <img class="img-button" :src="phone.titleImg"> 
+                    <div class="list-img-button"> {{ phone.title }} </div>
+                     </div>
+                    </span>
+                     <!-- <p v-else>1</p> -->
                 </template>
-                </template> 
-            </span>
+            </div>
+            
         </div>
+        
         
       
 </template>
@@ -45,9 +46,32 @@ export default {
 
         return {
            showMenu: false,
-          
+           title: '',
         }
     },
+    computed:{
+    filteredList(){
+        let comp = this.title;
+        return this.phones.filter(function (elem) {
+           
+          //  if(this.index >= this.stn)
+            if(comp==='') return true;
+            else return elem.title.indexOf(comp) > -1;
+            
+        })
+    }
+  },
+  filteredListElse(){
+        let comp = this.title;
+
+        for(let i=0; i<=phones.lenth; i++)
+        {
+            arrList
+        }
+            
+        },
+   
+  
     methods:{
         elsePhone() {
              this.showMenu=!this.showMenu
@@ -74,33 +98,38 @@ export default {
 {
     display: block;
     position: absolute;
+    margin: 0;
+    padding: 0;
 }
-
+.phone-else-list{
+display: flex;
+background-color: white;
+}
 .button-else{
     border: none;
     background: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    
+    display: block;    
 }
 
 .img-button-else{ 
     align-items: center;
+    
 }
 
 .img-button{
     display: block;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+    align-items: center;   
     transform: scale(0.5); 
 }
 
 .list-img-button{
     display: block;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+    align-items: center;   
+    margin-top: 14%;
 }
+.search-input{
+    
+    margin-bottom: 10px;
+    padding: 5px; 
+ }
 </style>

@@ -12,8 +12,11 @@
                     <li class="phone-item">
                         <div class="product-title">Смартфоны</div>
                     </li>
+                    <li >
+                        <div class="show-width">1 </div>
+                    </li>
                     <li class="show-item">
-                        <div class="show-products">Отобразить товары:</div>
+                        <div class="show-goods">Отобразить товары:</div>
                     </li>
                 </ul>
 
@@ -57,7 +60,7 @@
                             <div class="show-phone">
                                 <span>
                                       <img :src="phone.titleImg" alt="phone" class="phone-image">
-                                      <div>{{ phone.title }} -{{indexID}}</div>                 
+                                      <div>{{ phone.title }}</div>                 
                                         
                                 </span> 
                                 <span class="else-phone">
@@ -67,7 +70,7 @@
                         </th>
                     </tr>
                 </thead>
-                
+                <!-- <User @show="func" name="john" surn="smit"  :phones="phones"/> -->
                
                 <tbody>
                     <tr v-if="!hideCompany">
@@ -144,12 +147,12 @@
 </template>
 <script>
 import ElsePhone from './ElsePhone.vue'
-
+import User from './User.vue'
 
 export default {
     components: {
 			ElsePhone,
-            
+            User,
 		},
   
     emits: ['showEF'],
@@ -158,11 +161,11 @@ export default {
         return {       
             phones: [
                 {  phID: 0, title: 'Apple iPhone 12', titleImg: './src/components/images/image 16.png', company: 'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128, fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 81990 },
-                {  phID: 1, title: 'Xiaomi Mi 11 Lite', titleImg: './src/components/images/Xiaomi Mi 11 Lite 1.png', company: 'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract0.png', price: 27490 },
+                {  phID: 1, title: 'Xiaomi Mi 11 Lite', titleImg: './src/components/images/Xiaomi Mi 11 Lite 1.png', company: 'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 27490 },
                 {  phID: 2, title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2021, diagonal: 6.1, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
-                { phID: 3, title: 'Samsung Galaxy A73', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2022, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
-                { phID: 4, title: 'Samsung Galaxy A74', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
-                {  phID: 5, title: 'Samsung Galaxy A75', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2020, diagonal: 6.9, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 }
+                { phID: 3, title: 'Samsung Galaxy S21 ', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2022, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
+                { phID: 4, title: 'Apple iPhone Xr', titleImg: './src/components/images/A72 1.png', company: 'Apple', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
+                {  phID: 5, title: 'Realme 8 Pro', titleImg: './src/components/images/A72 1.png', company: 'Realme', year: 2020, diagonal: 6.9, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 }
 
             ],
            
@@ -172,6 +175,7 @@ export default {
             vis5: false,
             vis6: false,
             n: 3,
+            title: '',
             hideGoods: false,
             hideCompany: false,
             hideYear: false,
@@ -234,7 +238,7 @@ export default {
          let varEl= this.phones[idPh];
          this.phones[idPh]=this.phones[idPhElse];
         this.phones[idPhElse]=varEl;
-        alert( this.phones[0].title);
+        
      
          return phones;
 	    },
@@ -307,9 +311,11 @@ export default {
 </script>
 
 <style>
+
 .container-title {
     padding-left: 0;
     display: flex;
+    
 }
 
 .show-products {
@@ -318,8 +324,7 @@ export default {
     padding-left: 0;
     font-family: Roboto;
     margin-top: 10px;
-
-
+   
 }
 
 .show-number {
@@ -332,39 +337,38 @@ export default {
 }
 
 .phone-item {
-
     font-size: 48px;
     font-weight: 700;
     margin-top: 52px;
-    margin-left: 166px;
+    margin-left: 166px; 
     color: #828286;
-
 }
+
 .phone-thead{
-    position: relative;
-   
+    position: relative;  
 
 }
+
 .show-phone{
     display:flex;  
-    margin-left: 30%;
-   
+    margin-left: 30%;   
 }
 
 
-.else-phone{
-  
+.else-phone{  
     padding: 0;
     margin-top: 90px;
 }
+
 .show-item {
     color: #0D5ADC;
     font-weight: 400;
-    font-size: 18px;
-    margin-left: 567px;
+    font-size: 18px;  
+    margin-left: 1100px;
     margin-right: 4px;
-    margin-top: 61px;
+    margin-top: 71px;
 }
+
 
 .number-item {
     color: #0D5ADC;
@@ -396,26 +400,22 @@ export default {
     margin-top: 0;
     border: none;
     font-family: Roboto;
-    width: 1110px;
+    width: 80%;
 }
 
 .phone-table thead th {
     border-bottom: 1px solid #CDCFD2;
     height: 266px;
-    margin-left: 0;
-   
-    
+    margin-left: 0;    
 }
 
 .phone-table tbody td {
     border-bottom: 1px solid #CDCFD2;
     font-size: 18px;
     height: 89px;
-
 }
 
 .products-rows {
-
     color: #A4A9B9;
     font-weight: 500;
     text-align: left;
@@ -423,7 +423,6 @@ export default {
 }
 
 .info-rows {
-
     color: #3B4157;
     font-weight: 500;
     text-align: center;

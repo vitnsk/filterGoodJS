@@ -39,7 +39,7 @@
 .comparison-item {
     font-size: 12px;
     margin-top: 44px;
-    margin-left: 614px;
+    margin-left: 55%;
     color: #000;
 }
 
