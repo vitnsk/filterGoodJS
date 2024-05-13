@@ -1,7 +1,3 @@
-
-
-
-
 <template>
 
     <section class="products" id="products">
@@ -12,7 +8,7 @@
                     <li class="phone-item">
                         <div class="product-title">Смартфоны</div>
                     </li>
-                    <li >
+                    <li>
                         <div class="show-width">1 </div>
                     </li>
                     <li class="show-item">
@@ -45,7 +41,7 @@
                 </ul>
 
             </div>
-         
+
             <table class="phone-table">
 
                 <thead class="phone-thead">
@@ -56,22 +52,23 @@
                             </div>
                         </th>
 
-                        <th class="show-phone-head" v-for="(phone, indexID) in dateList=phones.slice(0, n)" :key="indexID"  >
+                        <th class="show-phone-head" v-for="(phone, indexID) in dateList=phones.slice(0, n)"
+                            :key="indexID">
                             <div class="show-phone">
                                 <span>
-                                      <img :src="phone.titleImg" alt="phone" class="phone-image">
-                                      <div>{{ phone.title }}</div>                 
-                                        
-                                </span> 
+                                    <img :src="phone.titleImg" alt="phone" class="phone-image">
+                                    <div>{{ phone.title }}</div>
+
+                                </span>
                                 <span class="else-phone">
-                                <ElsePhone :phones="phones" class="elsePhone" @showEF="funcEF" :phoneID="indexID" :stn="n"/> 
+                                    <ElsePhone :phones="phones" class="elsePhone" @showEF="funcEF" :phoneID="indexID"
+                                        :stn="n" />
                                 </span>
                             </div>
                         </th>
                     </tr>
                 </thead>
-                <!-- <User @show="func" name="john" surn="smit"  :phones="phones"/> -->
-               
+
                 <tbody>
                     <tr v-if="!hideCompany">
                         <td class="products-rows">Производитель</td>
@@ -120,7 +117,8 @@
                     <tr v-if="!hideESIM">
                         <td class="products-rows"> Поддержка eSIM</td>
                         <td class="info-rows" v-for="(phone, index) in dateListESIM=phones.slice(0, n)" :key="index">
-                            <img :src="phone.ESIM"></td>
+                            <img :src="phone.ESIM">
+                        </td>
                     </tr>
 
                     <tr v-if="!hideWcharge">
@@ -134,12 +132,9 @@
                         <td class="products-rows">Стоимость</td>
                         <td class="info-rows" v-for="(phone, index) in dateListPrice=phones.slice(0, n)" :key="index">
                             {{ phone.price }} ₽</td>
-                    </tr>     
-
+                    </tr>
                 </tbody>
             </table>
-            
-          
         </div>
 
     </section>
@@ -147,35 +142,32 @@
 </template>
 <script>
 import ElsePhone from './ElsePhone.vue'
-import User from './User.vue'
 
 export default {
     components: {
-			ElsePhone,
-            User,
-		},
-  
+        ElsePhone,
+    },
+
     emits: ['showEF'],
-    
+
     data() {
-        return {       
+        return {
             phones: [
-                {  phID: 0, title: 'Apple iPhone 12', titleImg: './src/components/images/image 16.png', company: 'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128, fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 81990 },
-                {  phID: 1, title: 'Xiaomi Mi 11 Lite', titleImg: './src/components/images/Xiaomi Mi 11 Lite 1.png', company: 'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 27490 },
-                {  phID: 2, title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2021, diagonal: 6.1, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
-                { phID: 3, title: 'Samsung Galaxy S21 ', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2022, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
-                { phID: 4, title: 'Apple iPhone Xr', titleImg: './src/components/images/A72 1.png', company: 'Apple', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
-                {  phID: 5, title: 'Realme 8 Pro', titleImg: './src/components/images/A72 1.png', company: 'Realme', year: 2020, diagonal: 6.9, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 }
+                { title: 'Apple iPhone 12', titleImg: './src/components/images/image 16.png', company: 'Apple', year: 2021, diagonal: 6.1, country: "Китай", memory: 128, fscreen: 60, NFC: './src/components/images/Subtract0.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 81990 },
+                { title: 'Xiaomi Mi 11 Lite', titleImg: './src/components/images/Xiaomi Mi 11 Lite 1.png', company: 'Xiaomi', year: 2021, diagonal: 6.55, country: "Китай", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract1.png', wcharger: './src/components/images/Subtract1.png', price: 27490 },
+                { title: 'Samsung Galaxy A72', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2021, diagonal: 6.1, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
+                { title: 'Samsung Galaxy S21 ', titleImg: './src/components/images/A72 1.png', company: 'Samsung', year: 2022, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
+                { title: 'Apple iPhone Xr', titleImg: './src/components/images/A72 1.png', company: 'Apple', year: 2021, diagonal: 6.7, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 },
+                { title: 'Realme 8 Pro', titleImg: './src/components/images/A72 1.png', company: 'Realme', year: 2020, diagonal: 6.9, country: "Вьетнам", memory: 128, fscreen: 90, NFC: './src/components/images/Subtract1.png', ESIM: './src/components/images/Subtract0.png', wcharger: './src/components/images/Subtract1.png', price: 32890 }
 
             ],
-           
+
             vis2: false,
             vis3: true,
             vis4: false,
             vis5: false,
             vis6: false,
-            n: 3,
-            title: '',
+            n: 3,          
             hideGoods: false,
             hideCompany: false,
             hideYear: false,
@@ -194,54 +186,50 @@ export default {
         good2() {
             this.n = 2;
             this.vis2 = true,
-            this.vis3 = false,
-            this.vis4 = false,
-            this.vis5 = false,
-            this.vis6 = false
+                this.vis3 = false,
+                this.vis4 = false,
+                this.vis5 = false,
+                this.vis6 = false
         },
         good3() {
             this.n = 3;
             this.vis2 = false,
-            this.vis3 = true,
-            this.vis4 = false,
-            this.vis5 = false,
-            this.vis6 = false
+                this.vis3 = true,
+                this.vis4 = false,
+                this.vis5 = false,
+                this.vis6 = false
         },
         good4() {
             this.n = 4;
             this.vis2 = false,
-            this.vis3 = false,
-            this.vis4 = true,
-            this.vis5 = false,
-            this.vis6 = false
+                this.vis3 = false,
+                this.vis4 = true,
+                this.vis5 = false,
+                this.vis6 = false
         },
         good5() {
             this.n = 5;
             this.vis2 = false,
-            this.vis3 = false,
-            this.vis4 = false,
-            this.vis5 = true,
-            this.vis6 = false
+                this.vis3 = false,
+                this.vis4 = false,
+                this.vis5 = true,
+                this.vis6 = false
         },
         good6() {
             this.n = 6;
             this.vis2 = false,
-            this.vis3 = false,
-            this.vis4 = false,
-            this.vis5 = false,
-            this.vis6 = true
+                this.vis3 = false,
+                this.vis4 = false,
+                this.vis5 = false,
+                this.vis6 = true
         },
 
-       funcEF(idPhElse, idPh, phones) {
-		//alert(idPhElse);
-        //alert(idPh);
-         let varEl= this.phones[idPh];
-         this.phones[idPh]=this.phones[idPhElse];
-        this.phones[idPhElse]=varEl;
-        
-     
-         return phones;
-	    },
+        funcEF(idPhElse, idPh, phones) {
+            let varEl = this.phones[idPh];
+            this.phones[idPh] = this.phones[idPhElse];
+            this.phones[idPhElse] = varEl;
+            return phones;
+        },
     },
     computed: {
         hide() {
@@ -311,11 +299,10 @@ export default {
 </script>
 
 <style>
-
 .container-title {
     padding-left: 0;
     display: flex;
-    
+
 }
 
 .show-products {
@@ -324,7 +311,7 @@ export default {
     padding-left: 0;
     font-family: Roboto;
     margin-top: 10px;
-   
+
 }
 
 .show-number {
@@ -340,22 +327,22 @@ export default {
     font-size: 48px;
     font-weight: 700;
     margin-top: 52px;
-    margin-left: 166px; 
+    margin-left: 166px;
     color: #828286;
 }
 
-.phone-thead{
-    position: relative;  
+.phone-thead {
+    position: relative;
 
 }
 
-.show-phone{
-    display:flex;  
-    margin-left: 30%;   
+.show-phone {
+    display: flex;
+    margin-left: 30%;
 }
 
 
-.else-phone{  
+.else-phone {
     padding: 0;
     margin-top: 90px;
 }
@@ -363,7 +350,7 @@ export default {
 .show-item {
     color: #0D5ADC;
     font-weight: 400;
-    font-size: 18px;  
+    font-size: 18px;
     margin-left: 1100px;
     margin-right: 4px;
     margin-top: 71px;
@@ -406,7 +393,7 @@ export default {
 .phone-table thead th {
     border-bottom: 1px solid #CDCFD2;
     height: 266px;
-    margin-left: 0;    
+    margin-left: 0;
 }
 
 .phone-table tbody td {
