@@ -5,14 +5,25 @@
         class="chevron-image" /> </button>
        <div v-show="showMenu">
         <span class="conteiner-else">
-                <button class="button-else" v-for="(phone, index) in phones.slice(stn, phones.length)" :key="index"  :title="phone.title" @click="handleEF(phelID=phone.phID, phoneID)">
-                    <!-- <button class="button-else" v-for="(phone, index) in phones" :key="index"  :title="phone.title" @click="handleEF(index, phoneID)"> -->
+                <!-- <button class="button-else" v-for="(phone, index) in phones.slice(stn, phones.length)" :key="index"  :title="phone.title" @click="handleEF(index, phoneID)"> -->
+                    <!-- <button class="button-else" v-for="(phone, index) in phones" :key="index"  :title="phone.title" @click="handleEF(index, phoneID)">
                     <span class="img-button-else">
                <img class="img-button" :src="phone.titleImg">
-              <span class="list-img-button"> {{ phone.title }} -{{phone.phID}}- {{phoneID}}</span>
+              <span class="list-img-button"> {{ phone.title }} -{{index}}- {{phoneID}}</span>
                </span>
 
-                </button>
+                </button> -->
+
+                <template v-for="(phone, index) in phones" :key="index">
+                    <template v-if="index >= stn" >
+                    <button class="button-else"  @click="handleEF(index, phoneID)">
+                    <span class="img-button-else">
+                        <img class="img-button" :src="phone.titleImg">
+                       <span class="list-img-button"> {{ phone.title }} -{{index}}- {{phoneID}}</span>
+                        </span>
+                    </button>
+                </template>
+                </template> 
             </span>
         </div>
         
@@ -42,8 +53,8 @@ export default {
              this.showMenu=!this.showMenu
           /// this.showMenu=true;
         },
-        handleEF(phelID, phoneID) {
-        this.nf=phelID;
+        handleEF(index, phoneID) {
+        this.nf=index;
         this.mf=phoneID;
 		   this.$emit('showEF', this.nf, this.mf);
 	    }
